@@ -16,13 +16,26 @@ let package = Package(
             name: "Common",
             targets: ["Common"]
         ),
+        .library(
+            name: "Analytics",
+            targets: ["Analytics"]
+        ),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", branch: "master"),
+    ],
     targets: [
         .target(
             name: "Common",
             dependencies: [],
             path: "Common/Sources"
+        ),
+        .target(
+            name: "Analytics",
+            dependencies: [
+                .product(name: "FirebaseAnalytics", package: "firebase-ios-sdk")
+            ],
+            path: "Analytics/Sources"
         ),
     ]
 )
